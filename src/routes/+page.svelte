@@ -1,3 +1,20 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Keypad from "$lib/components/Keypad.svelte";
+import ResultBar from "$lib/components/ResultBar.svelte";
+
+</script>
+<div id="container">
+	<ResultBar />
+	<Keypad />
+</div>
+
+<style>
+	#container {
+		width:350px;
+		aspect-ratio: 3/4;
+		border: 1px solid #ccc;
+        border-radius:8px;
+		display: flex;
+		flex-flow:column nowrap;
+	}
+</style>
