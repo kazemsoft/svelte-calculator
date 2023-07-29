@@ -3,7 +3,8 @@
 	export let digit = '';
 	export let resetAC = false;
 	export let _operand = '';
-	export let _equal = false;
+	export let sideFunction = '';
+	export let dot = '';
 
 	function handleClickDigit(digit) {
 		if ($firstNumber && $operand) {
@@ -40,26 +41,25 @@
 			}
 		} else $operand = _operand;
 	}
-	function handleClickEqual() {
-		if ($secondNumber) {
-			if ($operand === 'add') {
-				$firstNumber = $firstNumber * 1 + $secondNumber * 1;
-				$secondNumber = '';
-				$operand = '';
-			} else if ($operand === 'minus') {
-				$firstNumber = $firstNumber * 1 - $secondNumber * 1;
-				$secondNumber = '';
-				$operand = '';
-			} else if ($operand === 'division') {
-				$firstNumber = ($firstNumber * 1) / ($secondNumber * 1);
-				$secondNumber = '';
-				$operand = '';
-			} else if ($operand === 'times') {
-				$firstNumber = $firstNumber * 1 * ($secondNumber * 1);
-				$secondNumber = '';
-				$operand = '';
+	function handleSideFunction(func) {
+		if (func === 'func1') {
+			if ($operand) {
+				$secondNumber = -1 * $secondNumber;
+			} else {
+				$firstNumber = -1 * $firstNumber;
+			}
+		} else {
+			if ($operand) {
+				$secondNumber = ($secondNumber / 100) * $firstNumber;
+			} else {
+				$firstNumber = $firstNumber / 100;
 			}
 		}
+	}
+	function handleDot() {
+		if ($operand) {
+			$secondNumber += '.';
+		} else $firstNumber += '.';
 	}
 </script>
 
@@ -72,8 +72,10 @@
 			? handleResetAC()
 			: _operand
 			? handleClickOperand(_operand)
-			: _equal
-			? handleClickEqual()
+			: sideFunction
+			? handleSideFunction(sideFunction)
+			: dot
+			? handleDot()
 			: null}
 	{...$$restProps}
 >
@@ -88,7 +90,6 @@
 		background: rgb(177, 177, 177);
 		font-size: 22px;
 		font-weight: 900;
-		border: 0;
 		-webkit-user-select: none; /* Safari */
 		-ms-user-select: none; /* IE 10 and IE 11 */
 		user-select: none; /* Standard syntax */
@@ -108,5 +109,8 @@
 		background: rgb(155, 155, 155) !important;
 		color: #fff;
 		font-size: 32px !important;
+	}
+	.hasOperand {
+		border: 1px solid #000 !important;
 	}
 </style>
