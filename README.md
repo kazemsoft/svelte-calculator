@@ -11,8 +11,6 @@ yarn && yarn dev
 ```
 
 ## Live Demo:
-```bash
-https://calculator.kazem.best/
-````
+You can see live demo [HERE](https://calculator.kazem.best) .
 
 Please don't hesitate to ask any questions about Svelte or this project. I'm happy to help.
